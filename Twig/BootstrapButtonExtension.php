@@ -91,12 +91,4 @@ class BootstrapButtonExtension extends AbstractExtension
         });
         return $result;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'braincrafted_bootstrap_button';
-    }
 }

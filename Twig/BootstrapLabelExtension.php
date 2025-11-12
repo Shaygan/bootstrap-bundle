@@ -110,12 +110,4 @@ class BootstrapLabelExtension extends AbstractExtension
     {
         return $this->labelFunction($text, 'info');
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'braincrafted_bootstrap_label';
-    }
 }

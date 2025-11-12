@@ -47,12 +47,4 @@ class BootstrapBadgeExtension extends AbstractExtension
     {
         return sprintf('<span class="badge">%s</span>', $text);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'braincrafted_bootstrap_badge';
-    }
 }

@@ -83,14 +83,6 @@ class BootstrapFormExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'braincrafted_bootstrap_form';
-    }
-
-    /**
      * Sets the style.
      *
      * @param string $style Name of the style

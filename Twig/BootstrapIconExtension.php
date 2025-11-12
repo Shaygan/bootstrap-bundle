@@ -105,12 +105,4 @@ class BootstrapIconExtension extends AbstractExtension
 
         return sprintf('<%1$s class="%2$s %2$s-%3$s"></%1$s>', $this->iconTag, $iconSet, $icon);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'braincrafted_bootstrap_icon';
-    }
 }

@@ -44,15 +44,6 @@ class FormStaticControlType extends AbstractType
     }
 
     /**
-     * Backward compatibility for SF < 3.0
-     *
-     * @return null|string
-     */
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()

@@ -39,15 +39,6 @@ class MoneyType extends BaseMoneyType
     }
 
     /**
-     * Backward compatibility for SF < 3.0
-     *
-     * @return null|string
-     */
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * Returns the pattern for this locale
      *
      * The pattern contains the placeholder "{{ widget }}" where the HTML tag should

@@ -1,4 +1,4 @@
-A fork of [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com) to make it compatible to symfony 5
+A fork of [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com) to make it compatible with Symfony 4, 5, and 6
 =================
 
 Installation
