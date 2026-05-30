@@ -3,6 +3,7 @@
     "description":  "BraincraftedBootstrapBundle integrates Bootstrap into Symfony2 by providing templates, Twig extensions, services and commands.",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
+    "version":      "4.0.1",
     "license":      "MIT",
     "authors":     [
         {

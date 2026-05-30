@@ -8,11 +8,14 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Braincrafted\Bundle\BootstrapBundle\Util\PathUtil;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -26,8 +29,10 @@ use Symfony\Component\HttpKernel\Kernel;
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com BraincraftedBootstrapBundle
  */
-class GenerateCommand extends ContainerAwareCommand
+class GenerateCommand extends Command implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     /** @var PathUtil */
     private $pathUtil;
 
@@ -46,7 +51,7 @@ class GenerateCommand extends ContainerAwareCommand
      *
      * @codeCoverageIgnore
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('braincrafted:bootstrap:generate')
@@ -57,14 +62,14 @@ class GenerateCommand extends ContainerAwareCommand
     /**
      * {@inheritDoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $config = $this->getContainer()->getParameter('braincrafted_bootstrap.customize');
 
         if (false === isset($config['variables_file']) || null === $config['variables_file']) {
             $output->writeln('<error>Found no custom variables.less file.</error>');
 
-            return;
+            return Command::FAILURE;
         }
 
         $filter = $this->getContainer()->getParameter('braincrafted_bootstrap.css_preprocessor');
@@ -73,12 +78,23 @@ class GenerateCommand extends ContainerAwareCommand
                 '<error>Bundle must be configured with "less" or "lessphp" to generated bootstrap.less</error>'
             );
 
-            return;
+            return Command::FAILURE;
         }
 
         $output->writeln('<comment>Found custom variables file. Generating...</comment>');
         $this->executeGenerateBootstrap($config);
         $output->writeln(sprintf('Saved to <info>%s</info>', $config['bootstrap_output']));
+
+        return Command::SUCCESS;
+    }
+
+    protected function getContainer(): ContainerInterface
+    {
+        if (null === $this->container) {
+            throw new \LogicException('The container has not been set.');
+        }
+
+        return $this->container;
     }
 
     protected function executeGenerateBootstrap(array $config)

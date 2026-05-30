@@ -2,9 +2,12 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOException;
@@ -19,12 +22,14 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com BraincraftedBootst
  */
-class InstallCommand extends ContainerAwareCommand
+class InstallCommand extends Command implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     /**
      * {@inheritDoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('braincrafted:bootstrap:install')
             ->setDescription('Installs the icon font');
@@ -33,7 +38,7 @@ class InstallCommand extends ContainerAwareCommand
     /**
      * {@inheritDoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $destDir = $this->getDestDir();
 
@@ -45,7 +50,7 @@ class InstallCommand extends ContainerAwareCommand
         } catch (IOException $e) {
             $output->writeln(sprintf('<error>Could not create directory %s.</error>', $destDir));
 
-            return;
+            return Command::FAILURE;
         }
 
         $srcDir = $this->getSrcDir();
@@ -57,7 +62,7 @@ class InstallCommand extends ContainerAwareCommand
                 $srcDir
             ));
 
-            return;
+            return Command::FAILURE;
         }
         $finder->files()->in($srcDir);
 
@@ -68,11 +73,22 @@ class InstallCommand extends ContainerAwareCommand
             } catch (IOException $e) {
                 $output->writeln(sprintf('<error>Could not copy %s</error>', $file->getBaseName()));
 
-                return;
+                return Command::FAILURE;
             }
         }
 
         $output->writeln(sprintf('Copied icon fonts to <comment>%s</comment>.', $destDir));
+
+        return Command::SUCCESS;
+    }
+
+    protected function getContainer(): ContainerInterface
+    {
+        if (null === $this->container) {
+            throw new \LogicException('The container has not been set.');
+        }
+
+        return $this->container;
     }
 
     /**

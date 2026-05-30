@@ -26,7 +26,7 @@ class StaticControlExtension extends AbstractTypeExtension
     /**
      * {@inheritDoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['static_control'] = $form->getConfig()->getOption('static_control', false);
     }
@@ -35,7 +35,7 @@ class StaticControlExtension extends AbstractTypeExtension
      * Add the static_control option
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(array('static_control'));
     }
@@ -43,7 +43,7 @@ class StaticControlExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /* We need to set it to disabled, so Symfony ignores the fact that there is no
            data submitted back for this field (mapping=>false is only two way, so not usable) */

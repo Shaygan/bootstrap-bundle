@@ -25,7 +25,7 @@ class MoneyType extends BaseMoneyType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['money_pattern'] = self::getPattern($options['currency']);
     }
@@ -33,7 +33,7 @@ class MoneyType extends BaseMoneyType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'money';
     }

@@ -26,7 +26,7 @@ class BootstrapLabelExtension extends AbstractExtension
     /**
      * {@inheritDoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         $options = array('pre_escape' => 'html', 'is_safe' => array('html'));
 

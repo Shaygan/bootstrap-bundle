@@ -39,7 +39,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processSassConfiguration(
@@ -71,7 +71,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     /**
      * {@inheritDoc}
      */
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $bundles = $container->getParameter('kernel.bundles');
 

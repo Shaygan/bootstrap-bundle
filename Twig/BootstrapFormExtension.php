@@ -44,7 +44,7 @@ class BootstrapFormExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return array(
             new TwigFunction('bootstrap_set_style', array($this, 'setStyle')),

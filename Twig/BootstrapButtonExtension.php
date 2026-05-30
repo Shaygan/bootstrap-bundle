@@ -37,7 +37,7 @@ class BootstrapButtonExtension extends AbstractExtension
     /**
      * {@inheritDoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return array(
             new TwigFunction('button', array($this, 'buttonFunction'), array('is_safe' => array('html'))),

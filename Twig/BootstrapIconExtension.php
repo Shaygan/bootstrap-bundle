@@ -45,7 +45,7 @@ class BootstrapIconExtension extends AbstractExtension
     /**
      * {@inheritDoc}
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return array(
             new TwigFilter(
@@ -59,7 +59,7 @@ class BootstrapIconExtension extends AbstractExtension
     /**
      * {@inheritDoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return array(
             new TwigFunction(

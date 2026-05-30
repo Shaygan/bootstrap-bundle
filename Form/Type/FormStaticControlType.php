@@ -25,7 +25,7 @@ class FormStaticControlType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(array(
             //'mapped'         => false,
@@ -37,7 +37,7 @@ class FormStaticControlType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): ?string
     {
         // map old class to new one using LegacyFormHelper
         return LegacyFormHelper::getType('text');
@@ -46,7 +46,7 @@ class FormStaticControlType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'bs_static';
     }
