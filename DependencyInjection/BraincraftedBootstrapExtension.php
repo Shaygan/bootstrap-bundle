@@ -9,9 +9,9 @@ namespace Braincrafted\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\AsseticConfiguration;
 
@@ -46,13 +46,13 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
             $this->processConfiguration($configuration, $configs)
         );
 
-        $loader = new Loader\XmlFileLoader(
+        $loader = new Loader\YamlFileLoader(
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
-        $loader->load('services/form.xml');
-        $loader->load('services/twig.xml');
-        $loader->load('services/session.xml');
+        $loader->load('services/form.yaml');
+        $loader->load('services/twig.yaml');
+        $loader->load('services/session.yaml');
 
         if (true === isset($config['customize'])) {
             $container->setParameter('braincrafted_bootstrap.customize', $config['customize']);
