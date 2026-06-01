@@ -44,11 +44,11 @@ class MoneyType extends BaseMoneyType
      * The pattern contains the placeholder "{{ widget }}" where the HTML tag should
      * be inserted
      *
-     * @param string $currency
+     * @param string|null $currency
      *
      * @return string Returns the pattern
      */
-    protected static function getPattern($currency)
+    protected static function getPattern(?string $currency): string
     {
         if (!$currency) {
             return '{{ widget }}';
