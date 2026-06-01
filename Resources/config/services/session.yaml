@@ -1,0 +1,8 @@
+parameters:
+    braincrafted_bootstrap.flash.class: Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage
+
+services:
+    braincrafted_bootstrap.flash:
+        class: '%braincrafted_bootstrap.flash.class%'
+        arguments:
+            - '@session'

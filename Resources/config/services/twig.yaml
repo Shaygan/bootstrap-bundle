@@ -1,0 +1,38 @@
+parameters:
+    braincrafted_bootstrap.twig.icon_extension.class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension
+    braincrafted_bootstrap.twig.button_extension.class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapButtonExtension
+    braincrafted_bootstrap.twig.label_extension.class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension
+    braincrafted_bootstrap.twig.badge_extension.class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension
+    braincrafted_bootstrap.twig.form_extension.class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension
+    braincrafted_bootstrap.icon_prefix: null
+
+services:
+    braincrafted_bootstrap.twig.icon_extension:
+        class: '%braincrafted_bootstrap.twig.icon_extension.class%'
+        arguments:
+            - '%braincrafted_bootstrap.icon_prefix%'
+            - '%braincrafted_bootstrap.icon_tag%'
+        tags:
+            - { name: twig.extension }
+
+    braincrafted_bootstrap.twig.button_extension:
+        class: '%braincrafted_bootstrap.twig.button_extension.class%'
+        arguments:
+            - '@braincrafted_bootstrap.twig.icon_extension'
+        tags:
+            - { name: twig.extension }
+
+    braincrafted_bootstrap.twig.label_extension:
+        class: '%braincrafted_bootstrap.twig.label_extension.class%'
+        tags:
+            - { name: twig.extension }
+
+    braincrafted_bootstrap.twig.badge_extension:
+        class: '%braincrafted_bootstrap.twig.badge_extension.class%'
+        tags:
+            - { name: twig.extension }
+
+    braincrafted_bootstrap.twig.form_extension:
+        class: '%braincrafted_bootstrap.twig.form_extension.class%'
+        tags:
+            - { name: twig.extension }
