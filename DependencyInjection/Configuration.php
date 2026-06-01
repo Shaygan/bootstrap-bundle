@@ -52,12 +52,12 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         return $this->buildConfigTree();
     }
 
-    private function buildConfigTree()
+    private function buildConfigTree(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('braincrafted_bootstrap');
         $rootNode = $treeBuilder->getRootNode();
